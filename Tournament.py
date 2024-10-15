@@ -1,4 +1,5 @@
 from Prisoner import Prisoner
+from tabulate import tabulate
 
 
 class Tournament:
@@ -17,13 +18,19 @@ class Tournament:
         p1.score += score_gained
 
     def end_game(self, participants):
+        print()
+        table_data = []
         max_score = 0
         winner = None
+        row = ["strategy", "score", "history"]
+        table_data.append(row)
         for p in participants:
-            print(p.strategy, " : ", p.score, " : ", p.match_history)
             if (p.score > max_score):
                 max_score = p.score
                 winner = p.strategy
+            row = [p.strategy, p.score, p.match_history]
+            table_data.append(row)
+        print(tabulate(table_data, headers="firstrow"))
         print("\nWINNER : ", winner)
 
     def run(self):
@@ -34,7 +41,7 @@ class Tournament:
             Prisoner("mean"),
             Prisoner("fiddyfiddy"),
             Prisoner("sneaky"),
-            # Prisoner("backstabber"),
+            Prisoner("backstabber"),
         ]
 
         for bot in participants:
@@ -45,12 +52,16 @@ class Tournament:
                 matches.append((participants[i], participants[j]))
 
         for m in matches:
+            p0_choises = []
+            p1_choises = []
             for x in range(self.numberOfMatches):
                 p0 = m[0]
                 p1 = m[1]
 
                 p0_choise = p0.choose().name
                 p1_choise = p1.choose().name
+                p0_choises.append(p0_choise)
+                p1_choises.append(p1_choise)
 
                 if p0_choise == "COOPERATE" and p1_choise == "COOPERATE":
                     score_gained = 3
@@ -67,5 +78,13 @@ class Tournament:
                 if p0_choise == "DETER" and p1_choise == "COOPERATE":
                     score_gained = 5
                     self.give_score(score_gained, p0, p1)
+            r0 = ['O' if x == "COOPERATE" else 'X' for x in p0_choises]
+            r1 = ['O' if x == "COOPERATE" else 'X' for x in p1_choises]
+            print()
+            print(r0, " : ", p0.strategy)
+            # Using list comprehension to remap the values
+            print(r1, " : ", p1.strategy)
+            p0_choises.clear()
+            p1_choises.clear()
 
         self.end_game(participants)

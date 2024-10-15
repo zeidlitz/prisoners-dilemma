@@ -45,7 +45,7 @@ class Prisoner:
                 self.counter = 0
             if self.counter < (globals.numberOfMatches * 0.7):
                 self.counter += 1
-                return "share"
+                return Choice.COOPERATE
             else:
                 self.counter += 1
-                return "take"
+                return Choice.DETER
