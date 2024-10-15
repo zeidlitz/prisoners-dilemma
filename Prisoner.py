@@ -12,6 +12,7 @@ class Prisoner:
     def __init__(self, strategy):
         self.strategy = strategy
         self.match_history = {}
+        self.counter = 0
         self.score = 0
 
     def choose(self):

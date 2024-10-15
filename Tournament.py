@@ -20,10 +20,10 @@ class Tournament:
         max_score = 0
         winner = None
         for p in participants:
+            print(p.strategy, " : ", p.score, " : ", p.match_history)
             if (p.score > max_score):
                 max_score = p.score
                 winner = p.strategy
-
         print("\nWINNER : ", winner)
 
     def run(self):
@@ -34,6 +34,7 @@ class Tournament:
             Prisoner("mean"),
             Prisoner("fiddyfiddy"),
             Prisoner("sneaky"),
+            # Prisoner("backstabber"),
         ]
 
         for bot in participants:
@@ -52,19 +53,19 @@ class Tournament:
                 p1_choise = p1.choose().name
 
                 if p0_choise == "COOPERATE" and p1_choise == "COOPERATE":
-                    score_gained = 1
+                    score_gained = 3
                     self.give_score(score_gained, p0, p1)
 
                 if p0_choise == "DETER" and p1_choise == "DETER":
-                    score_gained = 3
+                    score_gained = 1
                     self.give_scores(score_gained, p0, p1)
 
                 if p0_choise == "COOPERATE" and p1_choise == "DETER":
                     score_gained = 5
-                    self.give_score(score_gained, p0, p1)
+                    self.give_score(score_gained, p1, p0)
 
                 if p0_choise == "DETER" and p1_choise == "COOPERATE":
                     score_gained = 5
-                    self.give_score(score_gained, p1, p0)
+                    self.give_score(score_gained, p0, p1)
 
         self.end_game(participants)
