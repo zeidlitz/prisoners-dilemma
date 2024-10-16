@@ -1,13 +1,10 @@
-from Benevolent import Benevolent
-from Greedy import Greedy
-from Gambler import Gambler
-from Backstabber import Backstabber
 from tabulate import tabulate
 
 
 class Tournament:
-    def __init__(self, numberOfMatches):
+    def __init__(self, numberOfMatches, participants):
         self.numberOfMatches = numberOfMatches
+        self.participants = participants
 
     def give_score(self, score_gained, p0, p1):
         p0.match_history[p1.name] += score_gained
@@ -34,17 +31,12 @@ class Tournament:
             row = [p.name, p.score, p.match_history]
             table_data.append(row)
         print(tabulate(table_data, headers="firstrow"))
-        print("\nWINNER : ", winner)
+        print("\nWinner : ", winner)
 
     def run(self):
         matches = []
 
-        participants = [
-            Benevolent("Albert"),
-            Greedy("Frank"),
-            Backstabber("Abby"),
-            Gambler("Sarah")
-        ]
+        participants = self.participants
 
         for bot in participants:
             bot.match_history = {p.name: 0 for p in participants if p != bot}
@@ -67,7 +59,7 @@ class Tournament:
 
                 if p0_choise == "COOPERATE" and p1_choise == "COOPERATE":
                     score_gained = 3
-                    self.give_score(score_gained, p0, p1)
+                    self.give_scores(score_gained, p0, p1)
 
                 if p0_choise == "DETER" and p1_choise == "DETER":
                     score_gained = 1
@@ -80,11 +72,12 @@ class Tournament:
                 if p0_choise == "DETER" and p1_choise == "COOPERATE":
                     score_gained = 5
                     self.give_score(score_gained, p0, p1)
+
             r0 = ['O' if x == "COOPERATE" else 'X' for x in p0_choises]
             r1 = ['O' if x == "COOPERATE" else 'X' for x in p1_choises]
-            print()
+
+            print()  # Sepperator for better reading
             print(r0, " : ", p0.name)
-            # Using list comprehension to remap the values
             print(r1, " : ", p1.name)
             p0_choises.clear()
             p1_choises.clear()

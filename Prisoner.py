@@ -1,5 +1,3 @@
-import random
-import globals
 from enum import Enum
 
 
