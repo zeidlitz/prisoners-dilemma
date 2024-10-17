@@ -14,7 +14,7 @@ class Backstabber(Prisoner):
     The backstabber will COOPERATE a set number of times and then only DETER
     '''
 
-    def choose(self):
+    def choose(self, opponent):
         self.counter += 1
         if (self.counter == self.numberOfMatches):
             self.counter = 0

@@ -7,7 +7,7 @@ class Gambler(Prisoner):
         super().__init__()
         self.name = name
 
-    def choose(self):
+    def choose(self, opponent):
         if random.choice([True, False]):
             return Choice.COOPERATE
         else:

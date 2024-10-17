@@ -6,5 +6,5 @@ class Greedy(Prisoner):
         super().__init__()
         self.name = name
 
-    def choose(self):
+    def choose(self, opponent):
         return Choice.DETER

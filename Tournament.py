@@ -52,8 +52,8 @@ class Tournament:
                 p0 = m[0]
                 p1 = m[1]
 
-                p0_choise = p0.choose().name
-                p1_choise = p1.choose().name
+                p0_choise = p0.choose(p1).name
+                p1_choise = p1.choose(p0).name
                 p0_choises.append(p0_choise)
                 p1_choises.append(p1_choise)
 
@@ -73,6 +73,7 @@ class Tournament:
                     score_gained = 5
                     self.give_score(score_gained, p0, p1)
 
+            print(p0.choice_history)
             r0 = ['O' if x == "COOPERATE" else 'X' for x in p0_choises]
             r1 = ['O' if x == "COOPERATE" else 'X' for x in p1_choises]
 

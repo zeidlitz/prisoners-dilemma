@@ -9,7 +9,8 @@ class Choice(Enum):
 class Prisoner:
     def __init__(self):
         self.match_history = {}
+        self.choice_history = {}
         self.score = 0
 
-    def choose(self):
+    def choose(self, opponent):
         pass
