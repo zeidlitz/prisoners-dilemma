@@ -7,4 +7,6 @@ class Greedy(Prisoner):
         self.name = name
 
     def choose(self, opponent):
-        return Choice.DETER
+        choice = Choice.DETER
+        self.update_choice_history(opponent, choice)
+        return choice

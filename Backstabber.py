@@ -19,6 +19,10 @@ class Backstabber(Prisoner):
         if (self.counter == self.numberOfMatches):
             self.counter = 0
         if (self.counter < (self.numberOfMatches * self.ratio)):
-            return Choice.COOPERATE
+            choice = Choice.COOPERATE
+            self.update_choice_history(opponent, choice)
+            return choice
         else:
-            return Choice.DETER
+            choice = Choice.DETER
+            self.update_choice_history(opponent, choice)
+            return choice

@@ -7,4 +7,6 @@ class Benevolent(Prisoner):
         self.name = name
 
     def choose(self, opponent):
-        return Choice.COOPERATE
+        choice = Choice.COOPERATE
+        self.update_choice_history(opponent, choice)
+        return choice

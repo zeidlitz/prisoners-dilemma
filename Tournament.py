@@ -1,14 +1,24 @@
 from tabulate import tabulate
+import pdb
 
 
 class Tournament:
-    def __init__(self, numberOfMatches, participants):
+    def __init__(self, numberOfMatches, participants, debug=False):
+        self.debug = debug
         self.numberOfMatches = numberOfMatches
         self.participants = participants
+
+    '''
+    Singular: Award score to only p0
+    '''
 
     def give_score(self, score_gained, p0, p1):
         p0.match_history[p1.name] += score_gained
         p0.score += score_gained
+
+    '''
+    Plural: Award score to both p0 and p1
+    '''
 
     def give_scores(self, score_gained, p0, p1):
         p0.match_history[p1.name] += score_gained
@@ -73,13 +83,13 @@ class Tournament:
                     score_gained = 5
                     self.give_score(score_gained, p0, p1)
 
-            print(p0.choice_history)
-            r0 = ['O' if x == "COOPERATE" else 'X' for x in p0_choises]
-            r1 = ['O' if x == "COOPERATE" else 'X' for x in p1_choises]
+            if self.debug:
+                r0 = ['O' if x == "COOPERATE" else 'X' for x in p0_choises]
+                r1 = ['O' if x == "COOPERATE" else 'X' for x in p1_choises]
 
-            print()  # Sepperator for better reading
-            print(r0, " : ", p0.name)
-            print(r1, " : ", p1.name)
+                print()  # Sepperator for better reading
+                print(r0, " : ", p0.name)
+                print(r1, " : ", p1.name)
             p0_choises.clear()
             p1_choises.clear()
 
