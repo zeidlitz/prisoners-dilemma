@@ -14,12 +14,21 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     participants = [
-        Benevolent("Kind-Albert"),
-        Benevolent("Kind-Simon"),
         Greedy("Greedy-Frank"),
-        Backstabber("Backstabbing-Abby"),
-        T4T("T4T-Claire"),
-        Gambler("Gambling-Sarah")
+        T4T("T4T-Bob"),
+        # T4T("T4T-Richard"),
+        # Benevolent("Kind-Albert"),
+        # Benevolent("Kind-Bobby"),
+        # Benevolent("Kind-Robert"),
+        # Benevolent("Kind-Sam"),
+        # Benevolent("Kind-Simon"),
+        # Greedy("Greedy-Harold"),
+        # T4T("T4T-Claire"),
+        # Backstabber("Backstabbing-Abe"),
+        # Gambler("Gambling-Sarah"),
+        # Backstabber("Backstabbing-Abby"),
+        # Gambler("Gambling-Katy")
     ]
+
     t = Tournament(globals.numberOfMatches, participants, args.debug)
     t.run()

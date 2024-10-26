@@ -1,4 +1,5 @@
 import globals
+import pdb
 from Prisoner import Prisoner, Choice
 
 
@@ -14,6 +15,7 @@ class T4T(Prisoner):
 
     def choose(self, opponent):
         try:
+            # pdb.set_trace()
             opponents_choice_history = opponent.choice_history[self.name]
             choice = opponents_choice_history.get()
         except KeyError:

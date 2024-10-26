@@ -40,7 +40,7 @@ class Tournament:
                 winner = p.name
             row = [p.name, p.score, p.match_history]
             table_data.append(row)
-        print(tabulate(table_data, headers="firstrow"))
+        # print(tabulate(table_data, headers="firstrow"))
         print("\nWinner : ", winner)
 
     def run(self):
