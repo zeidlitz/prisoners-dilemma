@@ -11,8 +11,10 @@ class Gambler(Prisoner):
         if random.choice([True, False]):
             choice = Choice.COOPERATE
             self.update_choice_history(opponent, choice)
+            self.update_memory(opponent, choice)
             return choice
         else:
             choice = Choice.DETER
             self.update_choice_history(opponent, choice)
+            self.update_memory(opponent, choice)
             return choice

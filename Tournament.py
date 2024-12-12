@@ -87,6 +87,7 @@ class Tournament:
                 r0 = ['O' if x == "COOPERATE" else 'X' for x in p0_choises]
                 r1 = ['O' if x == "COOPERATE" else 'X' for x in p1_choises]
 
+                print (len(p0.memory[p1.name]))
                 print()  # Sepperator for better reading
                 print(r0, " : ", p0.name)
                 print(r1, " : ", p1.name)

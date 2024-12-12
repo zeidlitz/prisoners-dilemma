@@ -9,4 +9,5 @@ class Greedy(Prisoner):
     def choose(self, opponent):
         choice = Choice.DETER
         self.update_choice_history(opponent, choice)
+        self.update_memory(opponent, choice)
         return choice

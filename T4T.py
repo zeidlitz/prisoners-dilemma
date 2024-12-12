@@ -20,4 +20,5 @@ class T4T(Prisoner):
             choice = opponents_choice_history.get()
         except KeyError:
             choice = Choice.COOPERATE
+        self.update_memory(opponent, choice)
         return choice
