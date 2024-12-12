@@ -23,7 +23,6 @@ class Prisoner:
         self.choice_history[opponent.name].put(choice)
 
     def update_memory(self, opponent, choice):
-        if opponent not in self.memory:
-            self.memory[opponent.name] = []
-        self.memory[opponent.name].append(choice)
-
+        if opponent.name not in self.memory:
+            self.memory[opponent.name] = []  # Initialize list if not present
+        self.memory[opponent.name].append(choice)  # Append the new choice

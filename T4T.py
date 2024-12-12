@@ -1,5 +1,3 @@
-import globals
-import pdb
 from Prisoner import Prisoner, Choice
 
 
@@ -7,18 +5,20 @@ class T4T(Prisoner):
     def __init__(self, name):
         super().__init__()
         self.name = name
-        self.numberOfMatches = globals.numberOfMatches
 
     '''
-    The Tit For Tat strategy will be cooperative unless someone have detered them before. The base case if we have not met the opponent before is to cooperate. Else we will pick the choice they did to us previously.
+    The Tit-for-Tat strategy starts by cooperating and then mirrors the opponent's last move. It uses the choice history for immediate response to the opponent's last move.
     '''
 
     def choose(self, opponent):
-        try:
-            # pdb.set_trace()
-            opponents_choice_history = opponent.choice_history[self.name]
-            choice = opponents_choice_history.get()
-        except KeyError:
+        # If no previous choice, start with cooperate
+        if opponent.name not in self.choice_history or self.choice_history[opponent.name].empty():
             choice = Choice.COOPERATE
+        else:
+            # Get the opponent's last choice from choice history
+            choice = opponent.choice_history[self.name].get()
+
+        # Update choice history and memory
+        self.update_choice_history(opponent, choice)
         self.update_memory(opponent, choice)
         return choice

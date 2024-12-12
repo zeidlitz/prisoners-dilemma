@@ -16,18 +16,18 @@ if __name__ == "__main__":
     participants = [
         Greedy("Greedy-Frank"),
         T4T("T4T-Bob"),
-        # T4T("T4T-Richard"),
-        # Benevolent("Kind-Albert"),
+        T4T("T4T-Richard"),
+        Benevolent("Kind-Albert"),
         # Benevolent("Kind-Bobby"),
         # Benevolent("Kind-Robert"),
         # Benevolent("Kind-Sam"),
         # Benevolent("Kind-Simon"),
-        # Greedy("Greedy-Harold"),
-        # T4T("T4T-Claire"),
-        # Backstabber("Backstabbing-Abe"),
-        # Gambler("Gambling-Sarah"),
-        # Backstabber("Backstabbing-Abby"),
-        # Gambler("Gambling-Katy")
+        Greedy("Greedy-Harold"),
+        T4T("T4T-Claire"),
+        Backstabber("Backstabbing-Abe"),
+        Gambler("Gambling-Sarah"),
+        Backstabber("Backstabbing-Abby"),
+        Gambler("Gambling-Katy")
     ]
 
     t = Tournament(globals.numberOfMatches, participants, args.debug)

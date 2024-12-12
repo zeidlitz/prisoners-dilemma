@@ -1,5 +1,6 @@
 from tabulate import tabulate
 import pdb
+from Prisoner import Choice
 
 
 class Tournament:
@@ -72,7 +73,7 @@ class Tournament:
                     self.give_scores(score_gained, p0, p1)
 
                 if p0_choise == "DETER" and p1_choise == "DETER":
-                    score_gained = 1
+                    score_gained = 0
                     self.give_scores(score_gained, p0, p1)
 
                 if p0_choise == "COOPERATE" and p1_choise == "DETER":
@@ -84,13 +85,15 @@ class Tournament:
                     self.give_score(score_gained, p0, p1)
 
             if self.debug:
-                r0 = ['O' if x == "COOPERATE" else 'X' for x in p0_choises]
-                r1 = ['O' if x == "COOPERATE" else 'X' for x in p1_choises]
+                p0_memory = p0.memory.get(p1.name, [])
+                p1_memory = p1.memory.get(p0.name, [])
 
-                print (len(p0.memory[p1.name]))
-                print()  # Sepperator for better reading
-                print(r0, " : ", p0.name)
-                print(r1, " : ", p1.name)
+                r0 = ['O' if choice == Choice.COOPERATE else 'X' for choice in p0_memory]
+                r1 = ['O' if choice == Choice.COOPERATE else 'X' for choice in p1_memory]
+
+                print("\nMatch Memory:")
+                print(f"{p0.name}: {r0}")
+                print(f"{p1.name}: {r1}")
             p0_choises.clear()
             p1_choises.clear()
 
